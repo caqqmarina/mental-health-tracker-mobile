@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mental_health_tracker/menu.dart'; // Adjusted import for menu.dart
+import 'package:mental_health_tracker/screens/menu.dart'; // Adjusted import for menu.dart
 
 void main() {
   runApp(const MyApp());
