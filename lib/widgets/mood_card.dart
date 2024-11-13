@@ -1,7 +1,7 @@
-
 import 'package:flutter/material.dart';
 
 import '../screens/moodentry_form.dart';
+import '../screens/list_moodentry.dart'; // Import MoodEntryPage
 
 class ItemCard extends StatelessWidget {
   // Display the card with an icon and name.
@@ -13,33 +13,38 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      // Specify the background color of the application theme.
       color: Theme.of(context).colorScheme.secondary,
-      // Round the card border.
       borderRadius: BorderRadius.circular(12),
-
       child: InkWell(
-        // Action when the card is pressed.
         onTap: () {
-          // Display the SnackBar message when the card is pressed.
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
                 content: Text("You have pressed the ${item.name} button!")));
+
+          // Check if item name matches "Add Mood"
           if (item.name == "Add Mood") {
             Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => MoodEntryFormPage(),
-                ));
+              context,
+              MaterialPageRoute(
+                builder: (context) => MoodEntryFormPage(),
+              ),
+            );
+          } 
+          // Check if item name matches "View Mood"
+          else if (item.name == "View Mood") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const MoodEntryPage(), // Ensure this page exists
+              ),
+            );
           }
         },
-        // Container to store the Icon and Text
         child: Container(
           padding: const EdgeInsets.all(8),
           child: Center(
             child: Column(
-              // Place the Icon and Text in the center of the card.
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(

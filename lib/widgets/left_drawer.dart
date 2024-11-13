@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mental_health_tracker/screens/menu.dart';
 import 'package:mental_health_tracker/screens/moodentry_form.dart';
-// TODO: Import MoodEntryFormPage if it has already been created
+import 'package:mental_health_tracker/screens/list_moodentry.dart';
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -35,7 +35,6 @@ class LeftDrawer extends StatelessWidget {
                       fontWeight: FontWeight.normal,
                       color: Colors.white,
                     ),
-                    // TODO: Add text style with center alignment, font size 15, white color, and normal weight
                   ),
                 ],
               ),
@@ -50,18 +49,15 @@ class LeftDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-            leading: const Icon(Icons.mood),
-            title: const Text('Add Mood'),
-            // Redirection part to MoodEntryFormPage
-            onTap: () {
-              /*
-              TODO: Add routing to MoodEntryFormPage here,
-              after MoodEntryFormPage is created.
-              */
-               Navigator.pushReplacement(context, 
-                MaterialPageRoute(builder: (context) => MoodEntryFormPage(),
-                ));
-            },
+              leading: const Icon(Icons.add_reaction_rounded),
+              title: const Text('Mood List'),
+              onTap: () {
+                  // Navigate to the mood list page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const MoodEntryPage()),
+                  );
+              },
           ),
         ],
       ),
