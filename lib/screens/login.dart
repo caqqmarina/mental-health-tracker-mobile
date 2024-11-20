@@ -1,9 +1,8 @@
-import 'package:mental_health_tracker/screens/menu.dart';
 import 'package:flutter/material.dart';
-import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:mental_health_tracker/screens/register.dart';
-// TODO: Import RegisterPage later
+import 'package:pbp_django_auth/pbp_django_auth.dart';
+import 'menu.dart';
+import 'register.dart';
 
 void main() {
   runApp(const LoginApp());
@@ -14,15 +13,21 @@ class LoginApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.deepPurple,
-        ).copyWith(secondary: Colors.deepPurple[400]),
+    return Provider(
+      create: (_) {
+        CookieRequest request = CookieRequest();
+        return request;
+      },
+      child: MaterialApp(
+        title: 'Login',
+        theme: ThemeData(
+          useMaterial3: true,
+          colorScheme: ColorScheme.fromSwatch(
+            primarySwatch: Colors.deepPurple,
+          ).copyWith(secondary: Colors.deepPurple[400]),
+        ),
+        home: const LoginPage(),
       ),
-      home: const LoginPage(),
     );
   }
 }
@@ -99,15 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                       String username = _usernameController.text;
                       String password = _passwordController.text;
 
-		  // Check credentials
-		  // TODO: Change the URL and don't forget to add a trailing slash (/) at the end of the URL!
-		  // To connect the Android emulator to Django on localhost,
-		  // use the URL http://10.0.2.2/
-                      final response = await request
-                          .login("http://127.0.0.1:8000/auth/login/", {
-                        'username': username,
-                        'password': password,
-                      });
+                      // Check credentials
+                      final response = await request.login(
+                        "http://localhost:8000/auth/login/",
+                        {
+                          'username': username,
+                          'password': password,
+                        },
+                      );
 
                       if (request.loggedIn) {
                         String message = response['message'];
@@ -147,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
+                      foregroundColor: const Color.fromARGB(255, 255, 217, 252),
                       minimumSize: Size(double.infinity, 50),
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       padding: const EdgeInsets.symmetric(vertical: 16.0),

@@ -116,11 +116,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       String password2 = _confirmPasswordController.text;
 
                       // Check credentials
-                      // TODO: Change the url, don't forget to add a slash (/) inthe end of the URL!
-                      // To connect Android emulator with Django on localhost,
-                      // use the URL http://10.0.2.2/
                       final response = await request.postJson(
-                          "http://127.0.0.1:8000//auth/register/",
+                          "http://localhost:8000/auth/register/",
                           jsonEncode({
                             "username": username,
                             "password1": password1,
@@ -148,7 +145,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       }
                     },
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
+                      foregroundColor: const Color.fromARGB(255, 255, 217, 252),
                       minimumSize: Size(double.infinity, 50),
                       backgroundColor: Theme.of(context).colorScheme.primary,
                       padding: const EdgeInsets.symmetric(vertical: 16.0),

@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:mental_health_tracker/widgets/left_drawer.dart';
-
-import 'moodentry_form.dart';
+import '../widgets/left_drawer.dart';
 import '../widgets/mood_card.dart';
+
 
 class MyHomePage extends StatelessWidget {
   final String npm = '2306171480'; // NPM
   final String name = 'Chiara Aqmarina Diankusumo'; // Name
   final String className = 'KKI'; // Class
   final List<ItemHomepage> items = [
-    ItemHomepage("View Mood", Icons.mood),
-    ItemHomepage("Add Mood", Icons.add),
-    ItemHomepage("Logout", Icons.logout),
-  ];
+         ItemHomepage("View Product", Icons.mood, Colors.lightBlue),
+         ItemHomepage("Add Product", Icons.add, const Color.fromRGBO(128, 255, 126, 1)),
+         ItemHomepage("Logout", Icons.logout, Colors.pink),
+     ];
   MyHomePage({super.key});
 
-  @override
+     @override
   Widget build(BuildContext context) {
     // Scaffold provides the basic structure of the page with the AppBar and body.
     return Scaffold(
@@ -23,19 +22,20 @@ class MyHomePage extends StatelessWidget {
       appBar: AppBar(
         // The title of the application "Mental Health Tracker" with white text and bold font.
         title: const Text(
-          'Mental Health Tracker',
+          'SLIME PALACE',
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
         // The background color of the AppBar is obtained from the application theme color scheme.
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.secondary,
         iconTheme: const IconThemeData(color: Colors.white),
       ),
       drawer: const LeftDrawer(),
       // Body of the page with paddings around it.
-      body: Padding(
+      body: SingleChildScrollView( 
+      child: Padding(
         padding: const EdgeInsets.all(16.0),
         // Place the widget vertically in a column.
         child: Column(
@@ -64,7 +64,7 @@ class MyHomePage extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.only(top: 16.0),
                     child: Text(
-                      'Welcome to Mental Health Tracker',
+                      'Welcome to SLIME PALACE',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18.0,
@@ -87,22 +87,22 @@ class MyHomePage extends StatelessWidget {
                       return ItemCard(item);
                     }).toList(),
                   ),
-                ],
+                ],       
               ),
             ),
           ],
         ),
       ),
+    ),
     );
   }
 }
 
-
 class InfoCard extends StatelessWidget {
   // Card information that displays the title and content.
 
-  final String title; // Card title.
-  final String content; // Card content.
+  final String title;  // Card title.
+  final String content;  // Card content.
 
   const InfoCard({super.key, required this.title, required this.content});
 
@@ -113,8 +113,7 @@ class InfoCard extends StatelessWidget {
       elevation: 2.0,
       child: Container(
         // Set the size and spacing within the card.
-        width: MediaQuery.of(context).size.width /
-            3.5, // Adjust with the width of the device used.
+        width: MediaQuery.of(context).size.width / 3.5, // Adjust with the width of the device used.
         padding: const EdgeInsets.all(16.0),
         // Place the title and content vertically.
         child: Column(
